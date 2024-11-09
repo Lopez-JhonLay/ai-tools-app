@@ -1,8 +1,18 @@
 <div class="flex items-center justify-center min-h-screen p-4 -mt-5">
-  <div class="w-full max-w-4xl space-y-8 border border-slate-500 p-5 rounded-md">
+  <div
+    class="w-full max-w-4xl space-y-8 border border-slate-500 p-5 rounded-md"
+  >
     <!-- Table Component -->
-    <app-mood-tunes-table></app-mood-tunes-table>
+    <app-mood-tunes-table [moodTracks]="randomTracks"></app-mood-tunes-table>
+    <a
+      class="inline-block rounded border border-current px-8 py-3 text-sm font-medium text-indigo-600 transition hover:rotate-2 hover:scale-110 focus:outline-none focus:ring active:text-indigo-500"
+      (click)="onShuffle()"
+    >
+      Shuffle
+    </a>
     <!-- Order Notes Component -->
-    <app-mood-tunes-input></app-mood-tunes-input>
+    <app-mood-tunes-input
+      (moodResult)="getMoodResult($event)"
+    ></app-mood-tunes-input>
   </div>
 </div>

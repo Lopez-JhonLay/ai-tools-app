@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MoodAnalysisService } from '../../../services/mood-analysis.service';
 import { Sentiment } from '../../../../models/sentiment';
@@ -14,7 +14,7 @@ import { HuggingFaceResponse } from '../../../../models/hugging-face-api-respons
 })
 export class MoodTunesInputComponent {
   moodInput = new FormControl('');
-  moodResult!: MoodResult;
+  @Output() moodResult = new EventEmitter<MoodResult | string>();
 
   constructor(private moodAnalysisService: MoodAnalysisService) {}
 
@@ -33,6 +33,7 @@ export class MoodTunesInputComponent {
             prev.score > current.score ? prev : current
         );
 
+        this.moodResult.emit(primarySentiment.label.toLowerCase());
         console.log('Primary sentiment:', primarySentiment.label);
       },
       error: (error) => {

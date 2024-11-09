@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Track } from '../../../../models/track';
 
 @Component({
   selector: 'app-mood-tunes-table',
@@ -8,5 +9,5 @@ import { Component } from '@angular/core';
   styleUrl: './mood-tunes-table.component.css'
 })
 export class MoodTunesTableComponent {
-
+  @Input() moodTracks: Track[] = [];
 }
